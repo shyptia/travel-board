@@ -1,0 +1,62 @@
+.header {
+  background-color: #f4f4f4;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+
+  .container {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .logo {
+    display: block;
+    width: 160px;
+    height: 34px;
+  }
+
+  .nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+
+      li {
+        a {
+          font-size: 16px;
+          color: #333;
+          text-decoration: none;
+          padding: 5px;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: #007bff;
+          }
+        }
+      }
+    }
+  }
+
+  .actions {
+    .loginBtn {
+      padding: 8px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+}
