@@ -23,9 +23,6 @@ export const Header = () => {
             ))}
           </ul>
         </nav>
-        <div className={styles.actions}>
-          <button className={styles.loginBtn}>Login</button>
-        </div>
       </div>
     </header>
   );
