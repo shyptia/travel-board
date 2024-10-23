@@ -3,20 +3,16 @@ import styles from "./CreateTrip.module.scss";
 import { TravelForm } from "@/components/TravelForm";
 import { Trip } from "@/types";
 import { useRouter } from "next/router";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 export const CreateTrip = () => {
   const router = useRouter();
+  const [trips, setTrips] = useLocalStorage<Trip[]>("trips", []);
+
   const handleSubmit = (newTrip: Trip) => {
-    const trips = localStorage.getItem("trips");
-    let parsedTrips = [];
-
-    if (trips) {
-      parsedTrips = JSON.parse(trips);
-    }
-
-    const updatedTrips = [...parsedTrips, newTrip];
-    localStorage.setItem("trips", JSON.stringify(updatedTrips));
-    router.push('/trips')
+    const updatedTrips = [...trips, newTrip];
+    setTrips(updatedTrips);
+    router.push("/trips");
   };
 
   return (
