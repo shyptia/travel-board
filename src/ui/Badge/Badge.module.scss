@@ -1,0 +1,23 @@
+.badge {
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: white;
+  display: inline-block;
+  margin-bottom: 10px;
+
+  &.yellow {
+    background-color: #ffbf00;
+  }
+
+  &.blue {
+    background-color: #17a2b8;
+  }
+
+  &.green {
+    background-color: #28a745;
+  }
+
+  &.gray {
+    background-color: #6c757d;
+  }
+}
