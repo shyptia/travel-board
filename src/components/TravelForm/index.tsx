@@ -2,9 +2,15 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "./TravelForm.module.scss";
-import { TextInput, Textarea, Select } from "../../ui";
-import { TravelData, TravelFormProps } from "./types";
+import { TextInput, Textarea, Select, Button } from "../../ui";
 import { statusOptions } from "@/constants/travelForm";
+import { Trip } from "@/types";
+import { v4 as uuidv4 } from "uuid";
+
+export interface TravelFormProps {
+  initialData?: Trip;
+  onSubmit: (values: Trip) => void;
+}
 
 const validationSchema = Yup.object().shape({
   destination: Yup.string().required("Destination is required"),
@@ -17,22 +23,24 @@ const validationSchema = Yup.object().shape({
 });
 
 export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
-  const formik = useFormik<TravelData>({
-    initialValues: initialData || {
-      destination: "",
-      startDate: "",
-      endDate: "",
-      notes: "",
-      status: "",
+  const formik = useFormik<Trip>({
+    initialValues: {
+      id: initialData?.id || uuidv4(),
+      destination: initialData?.destination || "",
+      startDate: initialData?.startDate || "",
+      endDate: initialData?.endDate || "",
+      notes: initialData?.notes || "",
+      status: initialData?.status || statusOptions[0].value,
     },
     validationSchema,
     onSubmit: (values, { resetForm }) => {
       onSubmit(values);
-      if (!initialData) {
-        resetForm();
-      }
+      resetForm();
     },
   });
+
+  const renderError = (field: keyof Trip) =>
+    formik.touched[field] ? formik.errors[field] : "";
 
   return (
     <div className={styles.travelFormContainer}>
@@ -47,7 +55,7 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           value={formik.values.destination}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.destination ? formik.errors.destination : ""}
+          error={renderError("destination")}
         />
 
         <TextInput
@@ -57,7 +65,7 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           value={formik.values.startDate}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.startDate ? formik.errors.startDate : ""}
+          error={renderError("startDate")}
         />
 
         <TextInput
@@ -67,17 +75,17 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           value={formik.values.endDate}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.endDate ? formik.errors.endDate : ""}
+          error={renderError("endDate")}
         />
 
         <Textarea
           name="notes"
           label="Notes"
           placeholder="Additional notes"
-          value={formik.values.notes}
+          value={formik.values.notes || ""}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.notes ? formik.errors.notes : ""}
+          error={renderError("notes")}
         />
 
         <Select
@@ -87,16 +95,15 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           value={formik.values.status}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.status ? formik.errors.status : ""}
+          error={renderError("status")}
         />
 
-        <button
+        <Button
+          text={initialData ? "Update Trip" : "Create Trip"}
           type="submit"
           className={styles.submitButton}
-          disabled={formik.isSubmitting}
-        >
-          {initialData ? "Update Trip" : "Create Trip"}
-        </button>
+          disabled={!formik.isValid}
+        />
       </form>
     </div>
   );
