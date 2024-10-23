@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "./TravelForm.module.scss";
 import { TextInput, Textarea, Select, Button } from "../../ui";
-import { statusOptions } from "@/constants/travelForm";
+import { statusOptions } from "@/constants/trips";
 import { Trip } from "@/types";
 import { v4 as uuidv4 } from "uuid";
 
