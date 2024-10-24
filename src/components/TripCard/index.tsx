@@ -22,6 +22,10 @@ export const TripCard = ({ trip }: { trip: Trip }) => {
     router.push(`/trips/${trip.id}/edit`);
   };
 
+  const handleShow = () => {
+    router.push(`/trips/${trip.id}`);
+  };
+
   return (
     <div
       // @ts-expect-error 2322
@@ -34,7 +38,10 @@ export const TripCard = ({ trip }: { trip: Trip }) => {
       <p className={styles.dateRange}>
         {formatDate(trip.startDate)} - {formatDate(trip.endDate)}
       </p>
-      <Button text="Edit" size="sm" onClick={handleEdit} />
+      <div className={styles.buttonContainer}>
+        <Button text="Show" color="green" size="sm" onClick={handleShow} />
+        <Button text="Edit" size="sm" onClick={handleEdit} />
+      </div>
     </div>
   );
 };
