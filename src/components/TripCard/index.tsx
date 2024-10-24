@@ -5,8 +5,11 @@ import { formatDate } from "@/helpers/date";
 import { Badge } from "@/ui/Badge";
 import { statusesColors } from "@/constants/trips";
 import { useDrag } from "react-dnd";
+import { useRouter } from "next/router";
+import { Button } from "@/ui";
 
 export const TripCard = ({ trip }: { trip: Trip }) => {
+  const router = useRouter();
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "TRIP",
     item: { id: trip.id, status: trip.status },
@@ -14,6 +17,10 @@ export const TripCard = ({ trip }: { trip: Trip }) => {
       isDragging: monitor.isDragging(),
     }),
   }));
+
+  const handleEdit = () => {
+    router.push(`/trips/${trip.id}/edit`);
+  };
 
   return (
     <div
@@ -27,6 +34,7 @@ export const TripCard = ({ trip }: { trip: Trip }) => {
       <p className={styles.dateRange}>
         {formatDate(trip.startDate)} - {formatDate(trip.endDate)}
       </p>
+      <Button text="Edit" size="sm" onClick={handleEdit} />
     </div>
   );
 };
