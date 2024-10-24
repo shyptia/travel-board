@@ -9,17 +9,21 @@ export const Button = ({
   className = "",
   disabled = false,
   size = "md",
+  color = "blue",
 }: ButtonProps) => {
+  const classes = classNames(
+    styles.button,
+    styles[size],
+    styles[color],
+    className,
+    {
+      [styles.disabled]: disabled,
+    }
+  );
+
   return (
     <button
-      className={classNames(
-        styles.button,
-        styles[size],
-        className,
-        {
-          [styles.disabled]: disabled,
-        }
-      )}
+      className={classes}
       type={type}
       onClick={onClick}
       disabled={disabled}
@@ -36,4 +40,5 @@ interface ButtonProps {
   className?: string;
   disabled?: boolean;
   size?: "xs" | "sm" | "md" | "lg";
+  color?: "blue" | "green";
 }
