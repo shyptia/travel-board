@@ -11,9 +11,5 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
     setItem<T>(key, storedValue);
   }, [key, storedValue]);
 
-  const updateLocalStorage = (value: T) => {
-    setStoredValue(value);
-  };
-
-  return [storedValue, updateLocalStorage] as const;
+  return [storedValue, setStoredValue] as const;
 };

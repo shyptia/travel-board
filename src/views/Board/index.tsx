@@ -1,31 +1,35 @@
 import React from "react";
 import styles from "./Board.module.scss";
+import { BoardColumn } from "@/components/BoardColumn";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { Trip } from "@/types";
+import { Trip, TripStatus } from "@/types";
 import { statusOptions } from "@/constants/trips";
-import { TripCard } from "@/components/TripCard";
 
 export const Board = () => {
-  const [trips] = useLocalStorage<Trip[]>("trips", []);
+  const [trips, setTrips] = useLocalStorage<Trip[]>("trips", []);
 
-  const groupedTrips = statusOptions.reduce((acc, { value }) => {
-    acc[value] = trips.filter((trip) => trip.status === value);
-    return acc;
-  }, {} as Record<string, Trip[]>);
+  const handleDropTrip = (tripId: string, newStatus: TripStatus) => {
+    setTrips((prevTrips) => {
+      const updatedTrips = prevTrips.map((trip) =>
+        trip.id === tripId ? { ...trip, status: newStatus } : trip
+      );
+      return updatedTrips;
+    });
+  };
+
+  const getTripsByStatus = (status: string) => {
+    return trips.filter((trip) => trip.status === status);
+  };
 
   return (
     <div className={styles.board}>
-      {statusOptions.map(({ value, label }) => (
-        <div key={value} className={styles.column}>
-          <h2>{label}</h2>
-          {groupedTrips[value]?.length ? (
-            groupedTrips[value].map((trip) => (
-              <TripCard key={trip.id} trip={trip} />
-            ))
-          ) : (
-            <p>No {label.toLowerCase()} trips.</p>
-          )}
-        </div>
+      {statusOptions.map((status) => (
+        <BoardColumn
+          key={status.value}
+          status={status.value}
+          trips={getTripsByStatus(status.value)}
+          onDropTrip={handleDropTrip}
+        />
       ))}
     </div>
   );

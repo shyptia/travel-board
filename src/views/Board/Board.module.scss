@@ -2,20 +2,3 @@
   display: flex;
   gap: 16px;
 }
-
-.column {
-  flex: 1;
-  background-color: #f4f4f4;
-  padding: 16px;
-  border-radius: 8px;
-  min-height: 400px;
-}
-
-.column h2 {
-  margin-bottom: 16px;
-}
-
-.column p {
-  color: #999;
-  font-size: 14px;
-}
