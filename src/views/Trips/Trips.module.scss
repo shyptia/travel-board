@@ -8,28 +8,73 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
 
-  h1 {
-    font-size: 2rem;
-    margin: 0;
-  }
+.pageTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
 
-  .createTripButton {
-    padding: 8px 16px;
-    font-size: 1rem;
-  }
+.buttonsWrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.createTripButton,
+.viewTripsButton {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .content {
   padding: 20px;
-  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: #fff;
+  margin-top: 30px;
+}
 
-  p {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #555;
-  }
+.travelInspiration {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.inspirationText {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.inspirationImage {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tripInfo {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.tripCount {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.noTripsText {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 10px;
 }
