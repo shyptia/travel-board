@@ -8,7 +8,7 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <Link href="/" passHref className={styles.logo}>
+          <Link href="/board" passHref className={styles.logo}>
             <Image src="/images/logo.png" alt="Logo" width={160} height={34} />
           </Link>
         </div>

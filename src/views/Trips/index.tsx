@@ -33,7 +33,7 @@ export const TripsPage = () => {
             </p>
             <Button
               text="View Trips"
-              onClick={() => router.push("/trips/board")}
+              onClick={() => router.push("/board")}
               className={styles.viewTripsButton}
             />
           </div>
