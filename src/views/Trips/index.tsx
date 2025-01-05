@@ -5,34 +5,35 @@ import { useRouter } from "next/router";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Trip } from "@/types";
 import Image from "next/image";
+import { useSessionStorage } from "@/hooks/useSessionStorage";
 
 export const TripsPage = () => {
   const router = useRouter();
   const [trips] = useLocalStorage<Trip[]>("trips", []);
-
-  const handleNewTripClick = () => {
-    router.push("/trips/new");
-  };
-
-  const handleViewTripsClick = () => {
-    router.push("/board");
-  };
+  const [deletedTrips] = useSessionStorage<Trip[]>("deletedTrips", []);
 
   return (
     <div className={styles.tripsPage}>
       <div className={styles.header}>
         <h1 className={styles.pageTitle}>My Trips</h1>
         <div className={styles.buttonsWrapper}>
-          <Button
-            text="Create New Trip"
-            onClick={handleNewTripClick}
-            className={styles.createTripButton}
-            color="green"
-          />
+          {!!deletedTrips.length && (
+            <Button
+              text="View Deleted Trips"
+              onClick={() => router.push("/trips/deleted")}
+              color="red"
+            />
+          )}
           <Button
             text="View My Trips"
-            onClick={handleViewTripsClick}
+            onClick={() => router.push("/board")}
             className={styles.viewTripsButton}
+          />
+          <Button
+            text="Create New Trip"
+            onClick={() => router.push("/trips/new")}
+            className={styles.createTripButton}
+            color="green"
           />
         </div>
       </div>
