@@ -19,11 +19,25 @@ export const TripShow = () => {
   );
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const trip = trips.find((trip) => trip.id === id);
+  const getTrip = () => {
+    const tripInLocalStorage = trips.find((trip) => trip.id === id);
+    if (tripInLocalStorage)
+      return { trip: tripInLocalStorage, isDeleted: false };
 
-  if (!trip) {
+    const tripInDeleted = deletedTrips.find((trip) => trip.id === id);
+    if (tripInDeleted) return { trip: tripInDeleted, isDeleted: true };
+
+    return null;
+  };
+
+  const tripData = getTrip();
+
+  if (!tripData) {
     return <div className={styles.notFound}>Trip not found!</div>;
   }
+
+  const trip = tripData.trip;
+  const isDeleted = tripData.isDeleted;
 
   const handleDelete = (tripId: string) => {
     const tripToDelete = trips.find((item) => tripId === item.id);
@@ -43,23 +57,49 @@ export const TripShow = () => {
     router.push("/board");
   };
 
+  const handleRestore = (tripId: string) => {
+    const tripToRestore = deletedTrips.find((item) => tripId === item.id);
+
+    if (!tripToRestore) {
+      console.error("Trip not found");
+      return;
+    }
+
+    const updatedDeletedTrips = deletedTrips.filter(
+      (item) => item.id !== tripId
+    );
+    setDeletedTrips(updatedDeletedTrips);
+    setTrips([...trips, tripToRestore]);
+    router.push("/board");
+  };
+
+  const handleTripAction = () => {
+    if (!isDeleted) {
+      setIsPopupOpen(true);
+    } else {
+      handleRestore(trip.id);
+    }
+  };
+
   return (
     <>
       <div className={styles.tripDetails}>
         <div className={styles.title}>
           <h1>{trip.destination}</h1>
           <div className={styles.buttonsContainer}>
+            {!isDeleted && (
+              <Button
+                text="Edit Trip"
+                onClick={() => router.push(`/trips/${id}/edit`)}
+                className={styles.viewButton}
+                color="green"
+              />
+            )}
             <Button
-              text="Edit Trip"
-              onClick={() => router.push(`/trips/${id}/edit`)}
-              className={styles.viewButton}
-              color="green"
-            />
-            <Button
-              text="Delete Trip"
-              onClick={() => setIsPopupOpen(true)}
+              text={isDeleted ? "Restore Trip" : "Delete Trip"}
+              onClick={handleTripAction}
               className={styles.deleteButton}
-              color="red"
+              color={isDeleted ? "green" : "red"}
             />
           </div>
         </div>
@@ -82,8 +122,8 @@ export const TripShow = () => {
         )}
 
         <Button
-          text="Back to Board"
-          onClick={() => router.push("/board")}
+          text={isDeleted ? "Back to Deleted Trips" : "Back to Board"}
+          onClick={() => router.push(isDeleted ? "/trips/deleted" : "/board")}
           className={styles.backButton}
         />
       </div>
