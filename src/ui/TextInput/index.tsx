@@ -11,6 +11,7 @@ export const TextInput = ({
   type = "text",
   name,
   onBlur,
+  min,
 }: TextInputProps) => {
   return (
     <div className={styles.inputGroup}>
@@ -25,6 +26,7 @@ export const TextInput = ({
         className={classNames(styles.inputField, {
           [styles.errorBorder]: error,
         })}
+        min={min}
       />
       {error && <p className={styles.errorMessage}>{error}</p>}
     </div>
@@ -40,4 +42,5 @@ interface TextInputProps {
   type?: string;
   name: string;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  min?: string;
 }

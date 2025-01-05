@@ -23,11 +23,13 @@ const validationSchema = Yup.object().shape({
 });
 
 export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
+  const today = new Date().toISOString().split("T")[0];
+
   const formik = useFormik<Trip>({
     initialValues: {
       id: initialData?.id || uuidv4(),
       destination: initialData?.destination || "",
-      startDate: initialData?.startDate || "",
+      startDate: initialData?.startDate || today,
       endDate: initialData?.endDate || "",
       notes: initialData?.notes || "",
       status: initialData?.status || statusOptions[0].value,
@@ -44,9 +46,6 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
 
   return (
     <div className={styles.travelFormContainer}>
-      <h2 className={styles.header}>
-        {initialData ? "Edit Trip" : "Create Trip"}
-      </h2>
       <form onSubmit={formik.handleSubmit} className={styles.travelForm}>
         <TextInput
           name="destination"
@@ -66,6 +65,7 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={renderError("startDate")}
+          min={today}
         />
 
         <TextInput
@@ -76,12 +76,13 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={renderError("endDate")}
+          min={formik.values.startDate}
         />
 
         <Textarea
           name="notes"
           label="Notes"
-          placeholder="Additional notes"
+          placeholder="Add any additional notes"
           value={formik.values.notes || ""}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -103,6 +104,7 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           type="submit"
           className={styles.submitButton}
           disabled={!formik.isValid}
+          color="green"
         />
       </form>
     </div>
