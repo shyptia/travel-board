@@ -48,7 +48,7 @@ export const TripsPage = () => {
             className={styles.inspirationImage}
           />
           <p className={styles.inspirationText}>
-            Traveling opens up new worlds! Whether it's an adventure to a
+            Traveling opens up new worlds! Whether it&apos;s an adventure to a
             distant land or a road trip to discover hidden gems, every journey
             has something unique to offer. Every trip holds stories that shape
             our perspectives and leave us with unforgettable memories.
@@ -56,7 +56,7 @@ export const TripsPage = () => {
           <p className={styles.inspirationText}>
             Imagine exploring bustling cities, discovering quiet villages, or
             relaxing by the beach. The beauty of travel is that it offers
-            something for everyone. Whether you're seeking adventure, culture,
+            something for everyone. Whether you&apos;re seeking adventure, culture,
             relaxation, or nature, the world is full of wonders waiting to be
             discovered.
           </p>
