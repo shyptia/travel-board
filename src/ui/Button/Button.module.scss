@@ -38,6 +38,11 @@
     padding: 0.75rem 1.5rem;
     font-size: 1.125rem;
   }
+
+  &.iconOnly {
+    padding: 5px !important;
+    font-size: 0;
+  }
 }
 
 .blue {
@@ -54,4 +59,22 @@
   &:hover {
     background-color: #38a169;
   }
+}
+
+.red {
+  background-color: #e53e3e;
+
+  &:hover {
+    background-color: #c53030;
+  }
+}
+
+.icon {
+  display: inline-flex;
+  font-size: 1.25rem;
+  transition: color 0.3s;
+}
+
+.icon img {
+  filter: invert(100%) brightness(100%);
 }

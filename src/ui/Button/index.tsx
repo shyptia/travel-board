@@ -4,6 +4,7 @@ import styles from "./Button.module.scss";
 
 export const Button = ({
   text,
+  icon,
   onClick,
   type = "button",
   className = "",
@@ -11,6 +12,8 @@ export const Button = ({
   size = "md",
   color = "blue",
 }: ButtonProps) => {
+  const isIconOnly = icon && !text;
+
   const classes = classNames(
     styles.button,
     styles[size],
@@ -18,6 +21,7 @@ export const Button = ({
     className,
     {
       [styles.disabled]: disabled,
+      [styles.iconOnly]: isIconOnly,
     }
   );
 
@@ -28,17 +32,22 @@ export const Button = ({
       onClick={onClick}
       disabled={disabled}
     >
-      {text}
+      {isIconOnly ? (
+        <span className={styles.icon}>{icon}</span>
+      ) : (
+        text
+      )}
     </button>
   );
 };
 
 interface ButtonProps {
-  text: string;
+  text?: string;
+  icon?: React.ReactNode;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   className?: string;
   disabled?: boolean;
   size?: "xs" | "sm" | "md" | "lg";
-  color?: "blue" | "green";
+  color?: "blue" | "green" | "red";
 }
