@@ -18,7 +18,9 @@ export const CreateTrip = () => {
   return (
     <div className={styles.createTripPage}>
       <h1 className={styles.header}>Create a New Trip</h1>
-      <TravelForm onSubmit={handleSubmit} />
+      <div className={styles.travelFormWrapper}>
+        <TravelForm onSubmit={handleSubmit} />
+      </div>
     </div>
   );
 };

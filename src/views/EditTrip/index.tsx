@@ -23,7 +23,9 @@ export const EditTrip = () => {
   return (
     <div className={styles.editTripPage}>
       <h1 className={styles.header}>Edit Trip</h1>
-      <TravelForm onSubmit={handleSubmit} initialData={foundedTrip} />
+      <div className={styles.travelFormWrapper}>
+        <TravelForm onSubmit={handleSubmit} initialData={foundedTrip} />
+      </div>
     </div>
   );
 };
