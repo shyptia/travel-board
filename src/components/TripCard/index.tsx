@@ -7,6 +7,10 @@ import { statusesColors } from "@/constants/trips";
 import { useDrag } from "react-dnd";
 import { useRouter } from "next/router";
 import { Button } from "@/ui";
+import EditIcon from "../../../public/icons/edit.svg";
+import ShowIcon from "../../../public/icons/show.svg";
+import DeleteIcon from "../../../public/icons/delete.svg";
+import { Icon } from "@/ui/Icon";
 
 export const TripCard = ({ trip }: { trip: Trip }) => {
   const router = useRouter();
@@ -39,8 +43,23 @@ export const TripCard = ({ trip }: { trip: Trip }) => {
         {formatDate(trip.startDate)} - {formatDate(trip.endDate)}
       </p>
       <div className={styles.buttonContainer}>
-        <Button text="Show" color="green" size="sm" onClick={handleShow} />
-        <Button text="Edit" size="sm" onClick={handleEdit} />
+        <Button
+          icon={<Icon icon={ShowIcon} alt="Show" width={17} height={17} />}
+          color="green"
+          size="sm"
+          onClick={handleShow}
+        />
+        <Button
+          icon={<Icon icon={EditIcon} alt="Edit" width={17} height={17} />}
+          size="sm"
+          onClick={handleEdit}
+        />
+        <Button
+          icon={<Icon icon={DeleteIcon} alt="Delete" width={17} height={17} />}
+          color="red"
+          size="sm"
+          onClick={handleShow}
+        />
       </div>
     </div>
   );
