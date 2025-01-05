@@ -12,10 +12,11 @@ export const TextInput = ({
   name,
   onBlur,
   min,
+  required = false
 }: TextInputProps) => {
   return (
     <div className={styles.inputGroup}>
-      <label className={styles.inputLabel}>{label}</label>
+      <label className={styles.inputLabel}>{`${required && '* '}${label}`}</label>
       <input
         id={name}
         type={type}
@@ -43,4 +44,5 @@ interface TextInputProps {
   name: string;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   min?: string;
+  required?: boolean;
 }

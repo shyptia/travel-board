@@ -10,10 +10,13 @@ export const Select = ({
   options,
   error,
   name,
+  required = false,
 }: SelectProps) => {
   return (
     <div className={styles.selectGroup}>
-      <label className={styles.selectLabel}>{label}</label>
+      <label className={styles.selectLabel}>{`${
+        required && "* "
+      }${label}`}</label>
       <select
         id={name}
         value={value}
@@ -42,4 +45,5 @@ interface SelectProps {
   options: { value: string; label: string }[];
   error?: string;
   name: string;
+  required?: boolean;
 }

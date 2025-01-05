@@ -55,6 +55,7 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={renderError("destination")}
+          required
         />
 
         <TextInput
@@ -66,6 +67,7 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           onBlur={formik.handleBlur}
           error={renderError("startDate")}
           min={today}
+          required
         />
 
         <TextInput
@@ -77,6 +79,7 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           onBlur={formik.handleBlur}
           error={renderError("endDate")}
           min={formik.values.startDate}
+          required
         />
 
         <Textarea
@@ -97,6 +100,7 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={renderError("status")}
+          required
         />
 
         <Button
