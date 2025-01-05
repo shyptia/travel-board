@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import { Button } from "@/ui";
 import EditIcon from "../../../public/icons/edit.svg";
 import ShowIcon from "../../../public/icons/show.svg";
-import DeleteIcon from "../../../public/icons/delete.svg";
 import { Icon } from "@/ui/Icon";
 
 export const TripCard = ({ trip }: { trip: Trip }) => {
@@ -58,12 +57,6 @@ export const TripCard = ({ trip }: { trip: Trip }) => {
           icon={<Icon icon={EditIcon} alt="Edit" width={17} height={17} />}
           size="sm"
           onClick={handleEdit}
-        />
-        <Button
-          icon={<Icon icon={DeleteIcon} alt="Delete" width={17} height={17} />}
-          color="red"
-          size="sm"
-          onClick={handleShow}
         />
       </div>
     </div>

@@ -1,20 +1,37 @@
 .tripDetails {
-  max-width: 600px;
-  margin: auto;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 10px;
 }
 
 .detail {
-  margin: 0.5rem 0;
+  margin-bottom: 0.8rem;
   font-size: 1.2rem;
+  color: #555;
 }
 
-.editButton,
-.backButton {
-  margin-top: 1rem;
-  margin-right: 10px;
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 5px 10px;
 }

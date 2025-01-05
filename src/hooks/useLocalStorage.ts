@@ -8,6 +8,23 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
   });
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleStorageChange = (event: StorageEvent) => {
+        if (event.key === key) {
+          const newValue = event.newValue ? JSON.parse(event.newValue) : initialValue;
+          setStoredValue(newValue);
+        }
+      };
+
+      window.addEventListener("storage", handleStorageChange);
+
+      return () => {
+        window.removeEventListener("storage", handleStorageChange);
+      };
+    }
+  }, [key, initialValue]);
+
+  useEffect(() => {
     setItem<T>(key, storedValue);
   }, [key, storedValue]);
 
