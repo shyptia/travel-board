@@ -42,6 +42,11 @@ export const TripCard = ({ trip }: { trip: Trip }) => {
       <p className={styles.dateRange}>
         {formatDate(trip.startDate)} - {formatDate(trip.endDate)}
       </p>
+      {trip.notes && (
+        <p className={styles.notes} title={trip.notes}>
+          {trip.notes}
+        </p>
+      )}
       <div className={styles.buttonContainer}>
         <Button
           icon={<Icon icon={ShowIcon} alt="Show" width={17} height={17} />}
