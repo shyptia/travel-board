@@ -8,6 +8,12 @@
   font-size: 2rem;
   font-weight: bold;
   text-align: left;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 30px;
 }
 
