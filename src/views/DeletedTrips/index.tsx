@@ -16,7 +16,7 @@ export const DeletedTrips = () => {
       <h1 className={styles.title}>Deleted Trips</h1>
       <div className={styles.cardContainer}>
         {deletedTrips.map((trip) => (
-          <TripCard key={trip.id} trip={trip} />
+          <TripCard key={trip.id} trip={trip} isDeletedTrip />
         ))}
       </div>
     </div>

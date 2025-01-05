@@ -11,7 +11,12 @@ import EditIcon from "../../../public/icons/edit.svg";
 import ShowIcon from "../../../public/icons/show.svg";
 import { Icon } from "@/ui/Icon";
 
-export const TripCard = ({ trip }: { trip: Trip }) => {
+interface TripCardProps {
+  trip: Trip;
+  isDeletedTrip?: boolean;
+}
+
+export const TripCard = ({ trip, isDeletedTrip = false }: TripCardProps) => {
   const router = useRouter();
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "TRIP",
@@ -53,11 +58,13 @@ export const TripCard = ({ trip }: { trip: Trip }) => {
           size="sm"
           onClick={handleShow}
         />
-        <Button
-          icon={<Icon icon={EditIcon} alt="Edit" width={17} height={17} />}
-          size="sm"
-          onClick={handleEdit}
-        />
+        {!isDeletedTrip && (
+          <Button
+            icon={<Icon icon={EditIcon} alt="Edit" width={17} height={17} />}
+            size="sm"
+            onClick={handleEdit}
+          />
+        )}
       </div>
     </div>
   );
