@@ -82,16 +82,6 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           required
         />
 
-        <Textarea
-          name="notes"
-          label="Notes"
-          placeholder="Add any additional notes"
-          value={formik.values.notes || ""}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={renderError("notes")}
-        />
-
         <Select
           name="status"
           label="Status"
@@ -101,6 +91,16 @@ export const TravelForm = ({ initialData, onSubmit }: TravelFormProps) => {
           onBlur={formik.handleBlur}
           error={renderError("status")}
           required
+        />
+
+        <Textarea
+          name="notes"
+          label="Notes"
+          placeholder="Add any additional notes"
+          value={formik.values.notes || ""}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={renderError("notes")}
         />
 
         <Button
