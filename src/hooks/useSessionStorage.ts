@@ -1,16 +1,9 @@
+import { getSessionItem, setSessionItem } from "@/helpers/sessionStorage";
 import { useState, useEffect } from "react";
-
-const getSessionItem = <T>(key: string): T | null => {
-  const item = sessionStorage.getItem(key);
-  return item ? (JSON.parse(item) as T) : null;
-};
-
-const setSessionItem = <T>(key: string, value: T): void => {
-  sessionStorage.setItem(key, JSON.stringify(value));
-};
 
 export const useSessionStorage = <T>(key: string, initialValue: T) => {
   const [storedValue, setStoredValue] = useState<T>(() => {
+    if (typeof window === "undefined") return initialValue;
     const item = getSessionItem<T>(key);
     return item !== null ? item : initialValue;
   });
@@ -19,7 +12,7 @@ export const useSessionStorage = <T>(key: string, initialValue: T) => {
     if (typeof window !== "undefined") {
       const handleStorageChange = (event: StorageEvent) => {
         if (event.key === key) {
-          const newValue = event.newValue ? JSON.parse(event.newValue) : initialValue;
+          const newValue = event.newValue ? (JSON.parse(event.newValue) as T) : initialValue;
           setStoredValue(newValue);
         }
       };

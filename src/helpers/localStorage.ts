@@ -1,4 +1,5 @@
 export const setItem = <T>(key: string, value: T): void => {
+  if (typeof window === "undefined") return;
   try {
     const serializedValue = JSON.stringify(value);
     localStorage.setItem(key, serializedValue);
@@ -8,6 +9,7 @@ export const setItem = <T>(key: string, value: T): void => {
 };
 
 export const getItem = <T>(key: string): T | null => {
+  if (typeof window === "undefined") return null;
   try {
     const serializedValue = localStorage.getItem(key);
     return serializedValue ? JSON.parse(serializedValue) : null;
@@ -18,6 +20,6 @@ export const getItem = <T>(key: string): T | null => {
 };
 
 export const findItem = <T>(key: string, predicate: (item: T) => boolean): T | null => {
-  const items: T[] = getItem(key) || [];
+  const items: T[] = getItem<T[]>(key) || [];
   return items.find(predicate) || null;
 };
