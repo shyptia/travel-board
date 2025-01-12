@@ -1,13 +1,22 @@
 # Travel Board
 
+### Demo 
+
+- [DEMO LINK](https://travel-board-g8vl-pviq047c3-shyptias-projects.vercel.app/)
+
+
+https://github.com/user-attachments/assets/815a475d-b29e-43ce-8879-68f2b857af98
+
+
 ## Project Description
 
-The **Travel Board** is a web application designed to help users plan and manage their travel itineraries. Users can create, view, edit, and delete trips, providing essential details such as destinations, dates, notes, and status. The app offers a user-friendly interface, enabling easy navigation and efficient trip management.
+The **Travel Board** is a comprehensive web application designed to help users plan, organize, and manage their travel itineraries effortlessly. It offers a user-friendly interface that combines functionality and modern design, enabling users to create, view, edit, and delete trips with ease.
 
 Key features include:
 - **Create New Trips:** Users can input trip details and save them for future reference.
 - **Edit Existing Trips:** Modify trip information as plans change.
 - **View Trip Details:** Display detailed information about each trip in a structured format.
+- **Delete trips** no longer needed.
 
 ## Technologies Used
 
@@ -17,7 +26,7 @@ This project utilizes the following technologies:
 - **TypeScript:** A typed superset of JavaScript that enhances code quality and maintainability.
 - **SCSS:** A preprocessor that adds features such as variables and nested rules to CSS, allowing for more organized styles.
 - **React DnD:** A drag-and-drop library for React to manage trip card dragging functionality.
-- **Local Storage:** Used for storing trip data persistently in the user's browser.
+- **Session Storage & Local Storage:** For managing persistent and session-based data storage in the browser.
 
 ## Getting Started
 
